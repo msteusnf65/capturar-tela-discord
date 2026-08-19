@@ -1516,8 +1516,6 @@ if (shareButton) {
   });
 }
 
-const shareButton = $('share');
-
 if (shareButton) {
   shareButton.addEventListener('click', async () => {
     if (!session) return;
