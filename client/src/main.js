@@ -1493,6 +1493,10 @@ function stopMyBroadcast() {
 
 $('share').addEventListener('click', () => {
   if (!session) return;
+  
+  $('camera').addEventListener('click', async () => {
+  await toggleCamera();
+});
 
   if (iAmBroadcasting()) {
     stopMyBroadcast();
