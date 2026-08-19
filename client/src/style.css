@@ -1333,3 +1333,161 @@ button {
   border-color: var(--danger);
   color: #ffb3b6;
 }
+/* =========================================================
+   CONTROLES PRINCIPAIS — CAPTURAR + CÂMERA
+   ========================================================= */
+
+.media-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.discord-control {
+  position: relative;
+
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #2b2d31;
+  color: #b5bac1;
+
+  cursor: pointer;
+
+  transition:
+    background-color .15s ease,
+    color .15s ease,
+    transform .12s ease;
+}
+
+.discord-control svg {
+  width: 22px;
+  height: 22px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.discord-control:hover {
+  background: #404249;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.discord-control:active {
+  transform: scale(.94);
+}
+
+/* Capturar */
+
+#share {
+  width: 46px;
+  min-width: 46px;
+}
+
+/* Câmera */
+
+#cameraButton {
+  background: #2b2d31;
+}
+
+#cameraButton:hover {
+  background: #404249;
+}
+
+/* Câmera ligada */
+
+#cameraButton.camera-active {
+  background: #23a55a;
+  color: #ffffff;
+}
+
+#cameraButton.camera-active:hover {
+  background: #1d8b4b;
+}
+
+
+/* =========================================================
+   TOOLTIP
+   ========================================================= */
+
+.discord-control[data-tip]::after {
+  content: attr(data-tip);
+
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 9px);
+
+  transform: translateX(-50%) translateY(3px);
+
+  padding: 6px 9px;
+
+  border-radius: 6px;
+
+  background: #111214;
+  border: 1px solid #35373c;
+
+  color: #f2f3f5;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transition:
+    opacity .12s ease,
+    transform .12s ease;
+
+  z-index: 100;
+}
+
+.discord-control[data-tip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* =========================================================
+   NÃO MOSTRAR TEXTO "COMPARTILHAR TELA"
+   ========================================================= */
+
+#shareLabel {
+  display: none;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 620px) {
+
+  .discord-control {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .discord-control svg {
+    width: 19px;
+    height: 19px;
+  }
+
+}
