@@ -1535,8 +1535,37 @@ if (shareButton) {
   });
 }
 
-const cameraButton = $('cameraButton');
+const setupMediaButtons = () => {
+  const shareButton = document.getElementById('share');
+  const cameraButton = document.getElementById('cameraButton');
+  const liveSettingsButton = document.getElementById('liveSettings');
 
+  if (shareButton) {
+    shareButton.addEventListener('click', async () => {
+      if (!session) return;
+      openModal('start');
+    });
+  }
+
+  if (cameraButton) {
+    cameraButton.addEventListener('click', async () => {
+      if (!session) return;
+      await toggleCamera();
+    });
+  }
+
+  if (liveSettingsButton) {
+    liveSettingsButton.addEventListener('click', () => {
+      openModal('live');
+    });
+  }
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupMediaButtons, { once: true });
+} else {
+  setupMediaButtons();
+}
 if (cameraButton) {
   cameraButton.addEventListener('click', async () => {
     if (!session) return;
@@ -1619,8 +1648,6 @@ if (!cameraOption.parentElement) {
 
   modalCard.appendChild(cameraOption);
 }
-
-const liveSettingsButton = $('liveSettings');
 
 if (liveSettingsButton) {
   liveSettingsButton.addEventListener('click', () => {
