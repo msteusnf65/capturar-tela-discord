@@ -1536,6 +1536,48 @@ function openModal(mode) {
 
 }
 
+// ---------------------------------------------------------------- câmera
+
+const cameraOption = document.createElement('label');
+
+cameraOption.className = 'field-check';
+
+cameraOption.innerHTML = `
+  <input id="mCamera" type="checkbox" />
+  <span>
+    Compartilhar a câmera
+    <em class="opt">
+      Sua câmera aparecerá no canto inferior direito da transmissão.
+    </em>
+  </span>
+`;
+
+// Coloca a opção dentro do modal, antes das observações/botões.
+const cameraInput = cameraOption.querySelector('#mCamera');
+
+const audioInput = $('mAudio');
+
+if (audioInput) {
+  const audioOption = audioInput.closest('label');
+
+  if (audioOption) {
+    audioOption.insertAdjacentElement(
+      'afterend',
+      cameraOption
+    );
+  }
+}
+
+// Se o navegador não encontrou o áudio, adiciona no começo do conteúdo do modal.
+if (!cameraOption.parentElement) {
+  const modalCard =
+    $('modal').querySelector('.modal-card') ||
+    $('modal').firstElementChild ||
+    $('modal');
+
+  modalCard.appendChild(cameraOption);
+}
+
 $('liveSettings').addEventListener('click', () => openModal('live'));
 
 /** Espelha o volume atual no botão e no cursor, sem tocar no áudio. */
@@ -1829,7 +1871,6 @@ $('probe').addEventListener('click', async () => {
   }
 });
 
-async function toggleCamera() {
   if (cameraEnabled) {
     stopCamera();
     cameraStream = null;
