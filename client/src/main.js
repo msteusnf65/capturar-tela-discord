@@ -1614,17 +1614,19 @@ async function broadcastFromHere() {
 
   const proto = location.protocol === 'https:' ? 'wss' : 'ws';
 
-  const b = createBroadcaster({
-    wsUrl: `${proto}://${location.host}${P}/ws?t=${encodeURIComponent(shareToken)}`,
-    bitrate: Number($('mQuality').value),
-    fps: Number($('mFps').value),
-    audio: $('mAudio').checked,
-    onAviso: (m) => toast(m, true),
-    onEnd: () => {
-      myBroadcast = null;
-      renderBar();
-    },
-  });
+const b = createBroadcaster({
+  wsUrl: `${proto}://${location.host}${P}/ws?t=${encodeURIComponent(shareToken)}`,
+  bitrate: Number($('mQuality').value),
+  fps: Number($('mFps').value),
+  audio: $('mAudio').checked,
+  camera: $('mCamera').checked,
+  onAviso: (m) => toast(m, true),
+  onEnd: () => {
+    myBroadcast = null;
+    renderBar();
+  },
+});
+
 
   const startedAt = performance.now();
   try {
