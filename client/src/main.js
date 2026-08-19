@@ -1516,21 +1516,25 @@ if (shareButton) {
   });
 }
 
+const shareButton = $('share');
+
+if (shareButton) {
+  shareButton.addEventListener('click', async () => {
+    if (!session) return;
+
+    // código original do compartilhamento de tela aqui
+  });
+}
+
 const cameraButton = $('cameraButton');
 
 if (cameraButton) {
   cameraButton.addEventListener('click', async () => {
+    if (!session) return;
+
     await toggleCamera();
   });
 }
-  if (iAmBroadcasting()) {
-    stopMyBroadcast();
-    renderBar();
-    return;
-  }
-
-  openModal('start');
-});
 
 /**
  * O mesmo modal serve para começar e para ajustar no ar. Em 'live' os campos
