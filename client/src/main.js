@@ -524,12 +524,23 @@ $('profileInput').addEventListener('keydown', (e) => {
 });
 
 const name = $('profileInput').value.replace(/\s+/g, ' ').trim().slice(0, 32);
+  
+});$('profileSave').addEventListener('click', () => {
+  const name = $('profileInput').value
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 32);
+
   if (name) {
     session.user.name = name;
     storeName(name);
-    ws?.send(JSON.stringify({ type: 'rename', name }));
+    ws?.send(JSON.stringify({
+      type: 'rename',
+      name
+    }));
     renderProfileButton();
   }
+
   closeProfile();
 });
 
