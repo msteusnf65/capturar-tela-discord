@@ -1519,11 +1519,21 @@ const shareButton = $('share');
 
 if (shareButton) {
   shareButton.hidden = false;
+  shareButton.style.display = '';
+}
+if (shareButton) {
+  shareButton.hidden = false;
 }
 if (shareButton) {
   shareButton.addEventListener('click', async () => {
     if (!session) return;
   });
+}
+const cameraButton = $('cameraButton');
+
+if (cameraButton) {
+  cameraButton.hidden = false;
+  cameraButton.style.display = '';
 }
 
 if (shareButton) {
