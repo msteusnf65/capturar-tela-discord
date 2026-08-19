@@ -4,8 +4,15 @@ import { createAudio } from './audio.js';
 import { createBroadcaster } from '../../shared/broadcaster.js';
 import { startCamera, stopCamera } from './camera.js';
 
-const $ = (id) => document.getElementById(id);
+const $ = (id) => {
+  const element = document.getElementById(id);
 
+  if (!element) {
+    console.error('[ERRO] Elemento não encontrado:', id);
+  }
+
+  return element;
+};
 const params = new URLSearchParams(location.search);
 // O Discord injeta frame_id/instance_id na URL do iframe. Sem eles, estamos
 // rodando direto no navegador — modo de desenvolvimento.
