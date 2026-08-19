@@ -2,6 +2,7 @@ import { DiscordSDK } from '@discord/embedded-app-sdk';
 import { createPlayer } from './player.js';
 import { createAudio } from './audio.js';
 import { createBroadcaster } from '../../shared/broadcaster.js';
+import { startCamera, stopCamera } from './camera.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -46,6 +47,8 @@ let volumeAntes = volume || 1;
 // de quem assiste precisa sobreviver a isso.
 let activeSlot = null;
 let telaCheia = false;
+let cameraStream = null;
+let cameraEnabled = false;
 
 // ------------------------------------------------------------------- helpers
 
@@ -500,7 +503,8 @@ function openProfile() {
   $('profileId').textContent = inDiscord ? `Discord · ${session.user.id}` : 'modo local';
   $('profileInput').value = me.name;
 
-  $('profileModal').hidden = false;
+  $('profileModal').hidden = false;
+
   $('profileInput').focus();
   $('profileInput').select();
 }
@@ -1105,7 +1109,8 @@ function askPassword(room, error) {
   $('joinError').textContent = error ?? '';
   $('joinError').hidden = !error;
   if (!error) $('joinPass').value = '';
-  $('joinModal').hidden = false;
+  $('joinModal').hidden = false;
+
   $('joinPass').focus();
 }
 
@@ -1527,7 +1532,8 @@ function openModal(mode) {
     $('mFps').value = String(s.fps);
   }
 
-  $('modal').hidden = false;
+  $('modal').hidden = false;
+
 }
 
 $('liveSettings').addEventListener('click', () => openModal('live'));
@@ -1692,7 +1698,8 @@ $('newRoom').addEventListener('click', () => {
   if (!session) return;
   $('createName').value = '';
   $('createPass').value = '';
-  $('createModal').hidden = false;
+  $('createModal').hidden = false;
+
   $('createName').focus();
 });
 
@@ -1759,7 +1766,8 @@ $('roomSave').addEventListener('click', async () => {
 function openRoomSettings() {
   $('roomSub').textContent = roomInfo?.name ?? '';
   $('roomPass').value = '';
-  $('roomModal').hidden = false;
+  $('roomModal').hidden = false;
+
   $('roomPass').focus();
 }
 
@@ -1816,5 +1824,31 @@ $('probe').addEventListener('click', async () => {
     toast('Funcionou! O iframe permite captura direta — dá para dispensar a aba externa.');
   } catch (err) {
     toast(`Bloqueado (${err.name}): ${err.message}`, true);
+  }
+});
+
+async function toggleCamera() {
+  if (cameraEnabled) {
+    stopCamera();
+    cameraStream = null;
+    cameraEnabled = false;
+
+    toast('Câmera desligada.');
+    return;
+  }
+
+  try {
+    cameraStream = await startCamera();
+    cameraEnabled = true;
+
+    toast('Câmera ativada.');
+  } catch (err) {
+    console.error(err);
+
+    if (err.name === 'NotAllowedError') {
+      toast('Permissão da câmera recusada.', true);
+    } else {
+      toast(`Não foi possível acessar a câmera: ${err.message}`, true);
+    }
   }
 });
