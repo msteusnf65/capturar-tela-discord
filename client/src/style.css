@@ -1334,98 +1334,234 @@ button {
   color: #ffb3b6;
 }
 /* ============================================================
-   NOVO MENU SIMPLES — COMPARTILHAR TELA / CÂMERA
+   NOVO VISUAL DOS CONTROLES
+   ESTILO INSPIRADO NO DISCORD
    ============================================================ */
 
-.share-menu {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
+.media-controls {
+  gap: 8px;
+}
 
-  display: flex;
+
+/* Botões de câmera e tela */
+
+.discord-control {
+  position: relative;
+
+  width: 46px;
+  height: 46px;
+
+  min-width: 46px;
+
+  display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
-  padding: 20px;
+  gap: 8px;
 
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #2b2d31;
+
+  color: #b5bac1;
+
+  cursor: pointer;
+
+  transition:
+    background .15s ease,
+    color .15s ease,
+    transform .1s ease;
 }
 
-.share-menu[hidden] {
-  display: none !important;
+
+.discord-control svg {
+  width: 22px;
+  height: 22px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.8;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 
-/* Caixa principal */
+.discord-control:hover {
+  background: #404249;
+
+  color: #f2f3f5;
+
+  transform: translateY(-1px);
+}
+
+
+.discord-control:active {
+  transform: scale(.95);
+}
+
+
+/* Texto só aparece no botão quando houver espaço */
+
+.discord-control span {
+  display: none;
+}
+
+
+/* Compartilhar tela fica um pouco maior quando necessário */
+
+#share {
+  width: 46px;
+  min-width: 46px;
+
+  padding: 0;
+}
+
+
+/* ============================================================
+   TOOLTIP
+   ============================================================ */
+
+.discord-control[data-tip]::after {
+  content: attr(data-tip);
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: calc(100% + 10px);
+
+  transform: translateX(-50%) translateY(4px);
+
+  padding: 7px 10px;
+
+  border-radius: 6px;
+
+  background: #111214;
+
+  border: 1px solid #35373c;
+
+  color: #f2f3f5;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  z-index: 100;
+
+  transition:
+    opacity .12s ease,
+    transform .12s ease;
+}
+
+
+.discord-control[data-tip]:hover::after {
+  opacity: 1;
+
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* ============================================================
+   MENU SIMPLES
+   ============================================================ */
 
 .simple-menu {
-  width: min(430px, calc(100vw - 32px));
+  width: min(420px, calc(100vw - 32px));
 
   padding: 18px;
 
   background: #1e1f22;
 
-  border: 1px solid #2f3136;
+  border: 1px solid #35373c;
+
   border-radius: 12px;
 
   box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.45),
-    0 2px 8px rgba(0, 0, 0, 0.25);
+    0 20px 60px rgba(0,0,0,.55),
+    0 4px 14px rgba(0,0,0,.3);
 
-  animation: simpleMenuIn 0.16s ease-out;
+  animation: simpleMenuOpen .14s ease-out;
 }
 
 
-@keyframes simpleMenuIn {
+@keyframes simpleMenuOpen {
+
   from {
     opacity: 0;
-    transform: translateY(5px) scale(0.985);
+
+    transform:
+      translateY(5px)
+      scale(.98);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
+
 }
 
 
-/* Cabeçalho */
+/* ============================================================
+   CABEÇALHO DO MENU
+   ============================================================ */
 
-.simple-menu-head {
+.simple-menu-header {
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   margin-bottom: 16px;
 }
 
 
-.simple-menu-head h2 {
+.simple-menu-header h2 {
+
   margin: 0;
 
   color: #f2f3f5;
 
   font-size: 18px;
+
   font-weight: 700;
-  line-height: 1.2;
 }
 
 
 /* X */
 
 .simple-close {
+
   width: 32px;
   height: 32px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   padding: 0;
 
   border: 0;
+
   border-radius: 6px;
 
   background: transparent;
@@ -1433,75 +1569,90 @@ button {
   color: #b5bac1;
 
   font-size: 27px;
-  font-weight: 300;
+
   line-height: 1;
 
   cursor: pointer;
 
   transition:
-    background 0.12s ease,
-    color 0.12s ease;
+    background .12s ease,
+    color .12s ease;
 }
 
 
 .simple-close:hover {
+
   background: #2b2d31;
-  color: #f2f3f5;
+
+  color: #fff;
+
 }
 
 
-.simple-close:active {
-  transform: scale(0.94);
-}
+/* ============================================================
+   OPÇÃO
+   ============================================================ */
 
+.simple-option {
 
-/* Opção inteira */
-
-.simple-menu-option {
   width: 100%;
+
   min-height: 64px;
 
   display: flex;
+
   align-items: center;
 
-  padding: 12px 14px;
+  text-align: left;
+
+  padding: 11px 13px;
 
   border: 1px solid transparent;
+
   border-radius: 8px;
 
   background: #2b2d31;
 
   color: #f2f3f5;
 
-  text-align: left;
-
   cursor: pointer;
 
   transition:
-    background 0.12s ease,
-    border-color 0.12s ease,
-    transform 0.12s ease;
+    background .12s ease,
+    border-color .12s ease,
+    transform .1s ease;
 }
 
 
-.simple-menu-option:hover {
+.simple-option:hover {
+
   background: #35373c;
+
   border-color: #404249;
+
 }
 
 
-.simple-menu-option:active {
-  transform: scale(0.992);
+.simple-option:active {
+
+  transform: scale(.99);
+
 }
 
 
-/* Ícone */
+/* ============================================================
+   ÍCONE
+   ============================================================ */
 
-.simple-option-icon {
-  width: 38px;
-  height: 38px;
+.simple-icon {
+
+  width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -1512,77 +1663,81 @@ button {
   background: #313338;
 
   color: #f2f3f5;
-
-  flex: 0 0 auto;
 }
 
 
-.simple-option-icon svg {
+.simple-icon svg {
+
   width: 21px;
   height: 21px;
 
   fill: none;
+
   stroke: currentColor;
 
   stroke-width: 1.8;
+
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 
-/* Texto */
+/* ============================================================
+   TEXTO
+   ============================================================ */
 
-.simple-option-text {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.simple-text {
 
   flex: 1;
-}
 
-
-.simple-option-text strong {
   color: #f2f3f5;
 
   font-size: 15px;
-  font-weight: 600;
 
-  line-height: 20px;
+  font-weight: 600;
 }
 
 
-/* Seta */
+/* ============================================================
+   SETA
+   ============================================================ */
 
 .simple-arrow {
-  margin-left: 12px;
+
+  margin-left: 10px;
 
   color: #b5bac1;
 
   font-size: 24px;
-  font-weight: 400;
+
   line-height: 1;
 
   transition:
-    transform 0.12s ease,
-    color 0.12s ease;
+    transform .12s ease,
+    color .12s ease;
 }
 
 
-.simple-menu-option:hover .simple-arrow {
+.simple-option:hover .simple-arrow {
+
   color: #f2f3f5;
+
   transform: translateX(2px);
+
 }
 
 
-/* Esconde as configurações antigas.
-   Elas continuam no DOM para o main.js poder acessá-las. */
+/* ============================================================
+   ESCONDER CONFIGURAÇÕES ANTIGAS DO MENU DE TELA
+   Elas continuam no DOM para o main.js.
+   ============================================================ */
 
-.legacy-settings {
+.legacy-capture-options {
+
   position: absolute !important;
 
   width: 1px !important;
+
   height: 1px !important;
 
   overflow: hidden !important;
@@ -1592,96 +1747,59 @@ button {
   pointer-events: none !important;
 
   clip-path: inset(50%) !important;
+
 }
 
 
 /* ============================================================
-   MENU DE CÂMERA
+   MODAIS
    ============================================================ */
 
-.camera-menu {
-  position: fixed;
-  inset: 0;
+#modal,
+#cameraModal {
 
-  z-index: 9999;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 20px;
-
-  background: rgba(0, 0, 0, 0.72);
+  background:
+    rgba(0, 0, 0, .72);
 
   backdrop-filter: blur(8px);
+
   -webkit-backdrop-filter: blur(8px);
-}
 
-
-.camera-menu[hidden] {
-  display: none !important;
-}
-
-
-.camera-menu .simple-menu {
-  animation: simpleMenuIn 0.16s ease-out;
-}
-
-
-/* Ícone da câmera */
-
-.camera-option-icon {
-  width: 38px;
-  height: 38px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-right: 12px;
-
-  border-radius: 8px;
-
-  background: #313338;
-
-  color: #f2f3f5;
-}
-
-
-.camera-option-icon svg {
-  width: 21px;
-  height: 21px;
-
-  fill: none;
-
-  stroke: currentColor;
-
-  stroke-width: 1.8;
-
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  z-index: 100;
 }
 
 
 /* ============================================================
-   MELHORIAS DO BOTÃO PRINCIPAL
+   CÂMERA
    ============================================================ */
 
-#share {
-  transition:
-    background 0.15s ease,
-    transform 0.12s ease,
-    box-shadow 0.15s ease;
+#cameraButton {
+
+  background: #2b2d31;
+
 }
 
 
-#share:hover {
-  transform: translateY(-1px);
+#cameraButton:hover {
+
+  background: #404249;
+
 }
 
 
-#share:active {
-  transform: translateY(0);
+#cameraButton.camera-active {
+
+  background: #23a55a;
+
+  color: #fff;
+
+}
+
+
+#cameraButton.camera-active:hover {
+
+  background: #1d8b4b;
+
 }
 
 
@@ -1689,19 +1807,41 @@ button {
    RESPONSIVO
    ============================================================ */
 
-@media (max-width: 520px) {
+@media (max-width: 620px) {
+
+  .discord-control {
+
+    width: 40px;
+
+    height: 40px;
+
+    min-width: 40px;
+
+  }
+
+
+  .discord-control svg {
+
+    width: 19px;
+
+    height: 19px;
+
+  }
+
 
   .simple-menu {
+
     width: calc(100vw - 24px);
+
     padding: 15px;
+
   }
 
-  .simple-menu-head h2 {
-    font-size: 17px;
-  }
 
-  .simple-menu-option {
+  .simple-option {
+
     min-height: 60px;
+
   }
 
 }
