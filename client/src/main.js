@@ -1508,13 +1508,21 @@ function stopMyBroadcast() {
   }
 }
 
-$('share').addEventListener('click', () => {
-  if (!session) return;
-  
-  $('cameraButtona').addEventListener('click', async () => {
-  await toggleCamera();
-});
+const shareButton = $('share');
 
+if (shareButton) {
+  shareButton.addEventListener('click', async () => {
+    if (!session) return;
+  });
+}
+
+const cameraButton = $('cameraButton');
+
+if (cameraButton) {
+  cameraButton.addEventListener('click', async () => {
+    await toggleCamera();
+  });
+}
   if (iAmBroadcasting()) {
     stopMyBroadcast();
     renderBar();
