@@ -1718,9 +1718,7 @@ $('modalGo').addEventListener('click', async () => {
   url.searchParams.set('q', $('mQuality').value);
   url.searchParams.set('fps', $('mFps').value);
   url.searchParams.set('som', $('mAudio').checked ? '1' : '0');
-  url.searchParams.set(
-  'camera',
-  $('mCamera').checked ? '1' : '0'
+  url.searchParams.set('camera', $('mCamera').checked ? '1' : '0');
 );
 
   if (inDiscord) {
