@@ -1007,7 +1007,6 @@ async function showLobby() {
   $('roomPill').hidden = true;
   $('leaveRoom').hidden = true;
   $('roomSettings').hidden = true;
-  $('share').hidden = true;
   $('liveSettings').hidden = true;
 
   // O dock inteiro sai de cena: todo controle dele é de dentro da sala, e o
@@ -1182,7 +1181,6 @@ function openRoom(tokens, room) {
 
   $('lobby').hidden = true;
   $('empty').hidden = false;
-  $('share').hidden = false;
   $('people').hidden = false;
   $('settings').hidden = false;
   $('profile').hidden = false;
@@ -1520,6 +1518,9 @@ function stopMyBroadcast() {
 const shareButton = $('share');
 
 if (shareButton) {
+  shareButton.hidden = false;
+}
+if (shareButton) {
   shareButton.addEventListener('click', async () => {
     if (!session) return;
   });
@@ -1638,14 +1639,7 @@ if (audioInput) {
 }
 
 // Se o navegador não encontrou o áudio, adiciona no começo do conteúdo do modal.
-if (!cameraOption.parentElement) {
-  const modalCard =
-    $('modal').querySelector('.modal-card') ||
-    $('modal').firstElementChild ||
-    $('modal');
-
-  modalCard.appendChild(cameraOption);
-}
+const liveSettingsButton = document.getElementById('liveSettings');
 
 if (liveSettingsButton) {
   liveSettingsButton.addEventListener('click', () => {
