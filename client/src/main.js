@@ -1853,4 +1853,4 @@ async function toggleCamera() {
       toast(`Não foi possível acessar a câmera: ${err.message}`, true);
     }
   }
-});
+  
