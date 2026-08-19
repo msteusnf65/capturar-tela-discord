@@ -671,15 +671,26 @@ function renderBar() {
   const casters = participants.filter((p) => p.broadcasting);
   const iAmCasting = iAmBroadcasting();
 
-  const btn = $('share');
+const btn = $('share');
+
+if (btn) {
   btn.classList.toggle('go', !iAmCasting);
   btn.classList.toggle('live', iAmCasting);
   btn.disabled = false;
 
-  const rotuloShare = iAmCasting ? 'Parar transmissão' : 'Compartilhar tela';
-  $('shareLabel').textContent = rotuloShare;
+  const rotuloShare = iAmCasting
+    ? 'Parar transmissão'
+    : 'Compartilhar tela';
+
+  const shareLabel = $('shareLabel');
+
+  if (shareLabel) {
+    shareLabel.textContent = rotuloShare;
+  }
+
   btn.dataset.tip = rotuloShare;
   btn.setAttribute('aria-label', rotuloShare);
+}
 
   // A engrenagem só aparece para transmissão nascida aqui: a que roda na aba
   // externa é configurada por lá, e daqui não dá para mexer nela.
@@ -1609,8 +1620,13 @@ if (!cameraOption.parentElement) {
   modalCard.appendChild(cameraOption);
 }
 
-$('liveSettings').addEventListener('click', () => openModal('live'));
+const liveSettingsButton = $('liveSettings');
 
+if (liveSettingsButton) {
+  liveSettingsButton.addEventListener('click', () => {
+    openModal('live');
+  });
+}
 /** Espelha o volume atual no botão e no cursor, sem tocar no áudio. */
 function renderVolume() {
   const pct = Math.round(volume * 100);
