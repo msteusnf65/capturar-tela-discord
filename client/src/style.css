@@ -1491,3 +1491,52 @@ button {
   }
 
 }
+
+#camera.discord-control,
+#share.discord-control {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  background: #2b2d31;
+  color: #b5bac1;
+
+  cursor: pointer;
+
+  transition:
+    background .15s ease,
+    color .15s ease,
+    transform .1s ease;
+}
+
+#camera.discord-control:hover,
+#share.discord-control:hover {
+  background: #404249;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+#camera.discord-control:active,
+#share.discord-control:active {
+  transform: scale(.94);
+}
+
+#camera.discord-control svg,
+#share.discord-control svg {
+  width: 22px;
+  height: 22px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
