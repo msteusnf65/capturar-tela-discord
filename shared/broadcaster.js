@@ -87,6 +87,7 @@ export function createBroadcaster({
   bitrate,
   fps,
   audio = false,
+  camera = false,
   cameraStream = null,
   onStatus,
   onStats,
