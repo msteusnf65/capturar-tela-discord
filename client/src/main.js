@@ -1866,6 +1866,7 @@ $('probe').addEventListener('click', async () => {
     toast('getDisplayMedia nem existe neste contexto — iframe sem permissão.', true);
     return;
   }
+
   try {
     const s = await navigator.mediaDevices.getDisplayMedia({ video: true });
     s.getTracks().forEach((t) => t.stop());
@@ -1875,6 +1876,7 @@ $('probe').addEventListener('click', async () => {
   }
 });
 
+async function toggleCamera() {
   if (cameraEnabled) {
     stopCamera();
     cameraStream = null;
@@ -1898,4 +1900,3 @@ $('probe').addEventListener('click', async () => {
     }
   }
 }
-
