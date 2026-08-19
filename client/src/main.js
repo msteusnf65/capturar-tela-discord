@@ -1842,7 +1842,6 @@ async function toggleCamera() {
   try {
     cameraStream = await startCamera();
     cameraEnabled = true;
-
     toast('Câmera ativada.');
   } catch (err) {
     console.error(err);
@@ -1853,4 +1852,5 @@ async function toggleCamera() {
       toast(`Não foi possível acessar a câmera: ${err.message}`, true);
     }
   }
-  
+}
+
