@@ -523,8 +523,7 @@ $('profileInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') $('profileSave').click();
 });
 
-$('profileSave').addEventListener('click', () => {
-  const name = $('profileInput').value.replace(/\s+/g, ' ').trim().slice(0, 32);
+const name = $('profileInput').value.replace(/\s+/g, ' ').trim().slice(0, 32);
   if (name) {
     session.user.name = name;
     storeName(name);
@@ -1494,7 +1493,7 @@ function stopMyBroadcast() {
 $('share').addEventListener('click', () => {
   if (!session) return;
   
-  $('camera').addEventListener('click', async () => {
+  $('cameraButtona').addEventListener('click', async () => {
   await toggleCamera();
 });
 
@@ -1815,7 +1814,7 @@ $('roomSave').addEventListener('click', async () => {
 function openRoomSettings() {
   $('roomSub').textContent = roomInfo?.name ?? '';
   $('roomPass').value = '';
-  $('roomModal').hidden = false;
+    $('roomModal').hidden = true;
 
   $('roomPass').focus();
 }
