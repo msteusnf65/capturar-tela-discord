@@ -671,8 +671,6 @@ function renderBar() {
   const casters = participants.filter((p) => p.broadcasting);
   const iAmCasting = iAmBroadcasting();
 
-const btn = $('share');
-
 if (btn) {
   btn.classList.toggle('go', !iAmCasting);
   btn.classList.toggle('live', iAmCasting);
