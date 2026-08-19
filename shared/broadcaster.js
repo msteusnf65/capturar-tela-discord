@@ -289,17 +289,48 @@ export function createBroadcaster({
     // IMPORTANTE:
     // getDisplayMedia continua sendo chamado diretamente pelo start(),
     // preservando o gesto do usuário.
-    stream = await navigator.mediaDevices.getDisplayMedia({
-      video: {
-        frameRate: {
-          ideal: fps,
-          max: fps,
-        },
-      },
+const displayPromise = navigator.mediaDevices.getDisplayMedia({
+  video: {
+    frameRate: {
+      ideal: fps,
+      max: fps,
+    },
+  },
+  audio: audio ? audioConstraints() : false,
+});
 
-      // systemAudio: 'include' pede o som do computador.
-      audio: audio ? audioConstraints() : false,
-    });
+// A câmera é solicitada junto com a captura da tela.
+// O getDisplayMedia é chamado imediatamente a partir do gesto do usuário.
+const cameraPromise = camera
+  ? navigator.mediaDevices.getUserMedia({
+      video: {
+        width: { ideal: 1280 },
+        height: { ideal: 720 },
+        frameRate: { ideal: fps, max: fps },
+      },
+      audio: false,
+    })
+  : Promise.resolve(null);
+
+stream = await displayPromise;
+
+if (camera && !cameraStream) {
+  try {
+    cameraStream = await cameraPromise;
+  } catch (err) {
+    // Se o usuário negar a câmera, continuamos somente com a tela.
+    if (err.name !== 'NotAllowedError') {
+      console.warn('[camera]', err);
+    }
+
+    cameraStream = null;
+
+    onAviso?.(
+      'A câmera não foi autorizada. A transmissão continuará somente com a tela.'
+    );
+  }
+}
+
 
     const screenTrack = stream.getVideoTracks()[0];
 
