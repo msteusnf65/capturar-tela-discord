@@ -671,6 +671,8 @@ function renderBar() {
   const casters = participants.filter((p) => p.broadcasting);
   const iAmCasting = iAmBroadcasting();
 
+const btn = $('share');
+
 if (btn) {
   btn.classList.toggle('go', !iAmCasting);
   btn.classList.toggle('live', iAmCasting);
@@ -689,7 +691,6 @@ if (btn) {
   btn.dataset.tip = rotuloShare;
   btn.setAttribute('aria-label', rotuloShare);
 }
-
   // A engrenagem só aparece para transmissão nascida aqui: a que roda na aba
   // externa é configurada por lá, e daqui não dá para mexer nela.
   $('liveSettings').hidden = !myBroadcast;
