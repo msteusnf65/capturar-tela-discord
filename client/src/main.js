@@ -987,8 +987,8 @@ let lobbyTimer = null;
  * porque a captura da aba externa só para se o servidor avisar, e depois do
  * close() não sobra por onde avisar.
  */
-function limparSala() {
-  if (typeof stopMyBroadcast === 'function') {
+const shareButton = $('share');
+if (typeof stopMyBroadcast === 'function') {
     stopMyBroadcast();
   }
 
