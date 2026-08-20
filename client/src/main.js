@@ -698,6 +698,7 @@ if (btn) {
   // A engrenagem só aparece para transmissão nascida aqui: a que roda na aba
   // externa é configurada por lá, e daqui não dá para mexer nela.
 const shareButton = $('share');
+  
 if (shareButton) {
   shareButton.hidden = !myBroadcast;
 
