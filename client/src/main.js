@@ -1,3 +1,7 @@
+console.log('🔥 MEU MAIN.JS FOI EXECUTADO 🔥');
+console.log('🔥 INTERFACE FOI CRIADA 🔥');
+console.log(document.body.innerHTML.includes('discord-screen'));
+
 import { DiscordSDK } from '@discord/embedded-app-sdk';
 import { createPlayer } from './player.js';
 import { createAudio } from './audio.js';
@@ -693,7 +697,7 @@ if (btn) {
 }
   // A engrenagem só aparece para transmissão nascida aqui: a que roda na aba
   // externa é configurada por lá, e daqui não dá para mexer nela.
-  const shareButton = $('share');
+  function limparSala() {
 
 if (shareButton) {
   shareButton.hidden = !myBroadcast;
