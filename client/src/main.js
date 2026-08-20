@@ -1506,9 +1506,6 @@ function iAmBroadcasting() {
 function setupMediaButtons() {
   const shareButton = document.getElementById('share');
   const cameraButton = document.getElementById('cameraButton');
-function setupMediaButtons() {
-  const shareButton = document.getElementById('share');
-  const cameraButton = document.getElementById('cameraButton');
 
   if (shareButton) {
     shareButton.addEventListener('click', async () => {
@@ -1524,19 +1521,6 @@ function setupMediaButtons() {
     });
   }
 }
-  if (shareButton) {
-    shareButton.addEventListener('click', async () => {
-      if (!session) return;
-      openModal('start');
-    });
-  }
-
-  if (cameraButton) {
-    cameraButton.addEventListener('click', async () => {
-      if (!session) return;
-      await toggleCamera();
-    });
-  }
 
 window.addEventListener('load', setupMediaButtons);
 /**
