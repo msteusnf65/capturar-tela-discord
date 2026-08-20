@@ -985,7 +985,9 @@ let lobbyTimer = null;
  * close() não sobra por onde avisar.
  */
 function limparSala() {
-  stopMyBroadcast();
+  if (typeof stopMyBroadcast === 'function') {
+    stopMyBroadcast();
+  }
 
   closeAllStreams();
   available.clear();
