@@ -693,14 +693,19 @@ if (btn) {
 }
   // A engrenagem só aparece para transmissão nascida aqui: a que roda na aba
   // externa é configurada por lá, e daqui não dá para mexer nela.
-  $('liveSettings').hidden = !myBroadcast;
-  // Pediram som e ele foi barrado: a engrenagem pisca, porque é atrás dela que
-  // está a saída. Sem isso o aviso passa no toast e ninguém acha o caminho.
+  const shareButton = $('share');
+
+if (shareButton) {
+  shareButton.hidden = !myBroadcast;
+
   const somPendente = Boolean(myBroadcast?.somBloqueado?.());
-  $('liveSettings').classList.toggle('atencao', somPendente);
-  $('liveSettings').dataset.tip = somPendente
+
+  shareButton.classList.toggle('atencao', somPendente);
+
+  shareButton.dataset.tip = somPendente
     ? 'Som barrado — clique para escolher a aba'
-    : 'Ajustes da transmissão';
+    : 'Compartilhar tela';
+}
 
   // O controle de som só existe quando há som para controlar.
   const temSom = [...streams.values()].some((s) => s.audio);
@@ -1008,8 +1013,6 @@ async function showLobby() {
   $('roomPill').hidden = true;
   $('leaveRoom').hidden = true;
   $('roomSettings').hidden = true;
-  $('liveSettings').hidden = true;
-
   // O dock inteiro sai de cena: todo controle dele é de dentro da sala, e o
   // cabeçalho do lobby já traz perfil e criar sala.
   $('fullscreen').hidden = true;
