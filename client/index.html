@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,30 +9,83 @@
 </head>
 
 <body>
+
 <div id="app">
 
+  <!-- ==========================================================
+       TOPO
+       ========================================================== -->
+
   <div class="topbar">
-    <div id="people" class="pill" title="Pessoas na sala"></div>
-    <div id="roomPill" class="pill room-pill" hidden></div>
+
+    <div
+      id="people"
+      class="pill"
+      title="Pessoas na sala"
+    ></div>
+
+    <div
+      id="roomPill"
+      class="pill room-pill"
+      hidden
+    ></div>
+
   </div>
 
-  <main id="grid" class="grid"></main>
 
-  <div id="empty" class="empty">
+  <!-- ==========================================================
+       GRADE
+       ========================================================== -->
+
+  <main
+    id="grid"
+    class="grid"
+  ></main>
+
+
+  <div
+    id="empty"
+    class="empty"
+  >
     <div class="icon">🖥️</div>
-    <h1 id="emptyTitle">Conectando…</h1>
-    <p id="emptyText" class="muted">Entrando na sala</p>
+
+    <h1 id="emptyTitle">
+      Conectando…
+    </h1>
+
+    <p
+      id="emptyText"
+      class="muted"
+    >
+      Entrando na sala
+    </p>
   </div>
 
-  <!-- LOBBY -->
-  <div id="lobby" class="lobby" hidden>
+
+  <!-- ==========================================================
+       LOBBY
+       ========================================================== -->
+
+  <div
+    id="lobby"
+    class="lobby"
+    hidden
+  >
 
     <header class="lobby-head">
 
       <div>
-        <h1>Salas</h1>
-        <p class="muted">Neste canal de voz</p>
+
+        <h1>
+          Salas
+        </h1>
+
+        <p class="muted">
+          Neste canal de voz
+        </p>
+
       </div>
+
 
       <div class="lobby-actions">
 
@@ -42,6 +96,7 @@
           hidden
         ></button>
 
+
         <button
           id="loginBtn"
           class="btn"
@@ -49,6 +104,7 @@
         >
           Entrar com Discord
         </button>
+
 
         <button
           id="newRoom"
@@ -61,13 +117,24 @@
 
     </header>
 
-    <div id="roomList" class="room-list"></div>
+
+    <div
+      id="roomList"
+      class="room-list"
+    ></div>
 
   </div>
 
 
-  <!-- CRIAR SALA -->
-  <div id="createModal" class="modal" hidden>
+  <!-- ==========================================================
+       CRIAR SALA
+       ========================================================== -->
+
+  <div
+    id="createModal"
+    class="modal"
+    hidden
+  >
 
     <div
       class="modal-card"
@@ -76,13 +143,17 @@
       aria-labelledby="createTitle"
     >
 
-      <h2 id="createTitle">Criar sala</h2>
+      <h2 id="createTitle">
+        Criar sala
+      </h2>
 
       <p class="modal-sub">
         A sala fecha sozinha quando fica vazia por alguns minutos.
       </p>
 
+
       <label class="field-col">
+
         <span>
           Nome
           <em class="opt">(opcional)</em>
@@ -94,9 +165,12 @@
           maxlength="40"
           autocomplete="off"
         />
+
       </label>
 
+
       <label class="field-col field-gap">
+
         <span>
           Senha
           <em class="opt">(opcional)</em>
@@ -108,15 +182,23 @@
           maxlength="64"
           autocomplete="new-password"
         />
+
       </label>
+
 
       <div class="modal-actions">
 
-        <button id="createCancel" class="btn">
+        <button
+          id="createCancel"
+          class="btn"
+        >
           Cancelar
         </button>
 
-        <button id="createGo" class="btn go">
+        <button
+          id="createGo"
+          class="btn go"
+        >
           Criar
         </button>
 
@@ -127,8 +209,15 @@
   </div>
 
 
-  <!-- ENTRAR NA SALA -->
-  <div id="joinModal" class="modal" hidden>
+  <!-- ==========================================================
+       ENTRAR NA SALA
+       ========================================================== -->
+
+  <div
+    id="joinModal"
+    class="modal"
+    hidden
+  >
 
     <div
       class="modal-card"
@@ -137,13 +226,21 @@
       aria-labelledby="joinTitle"
     >
 
-      <h2 id="joinTitle">Sala protegida</h2>
+      <h2 id="joinTitle">
+        Sala protegida
+      </h2>
 
-      <p id="joinSub" class="modal-sub"></p>
+      <p
+        id="joinSub"
+        class="modal-sub"
+      ></p>
+
 
       <label class="field-col">
 
-        <span>Senha</span>
+        <span>
+          Senha
+        </span>
 
         <input
           id="joinPass"
@@ -154,15 +251,27 @@
 
       </label>
 
-      <p id="joinError" class="modal-error" hidden></p>
+
+      <p
+        id="joinError"
+        class="modal-error"
+        hidden
+      ></p>
+
 
       <div class="modal-actions">
 
-        <button id="joinCancel" class="btn">
+        <button
+          id="joinCancel"
+          class="btn"
+        >
           Cancelar
         </button>
 
-        <button id="joinGo" class="btn go">
+        <button
+          id="joinGo"
+          class="btn go"
+        >
           Entrar
         </button>
 
@@ -173,8 +282,15 @@
   </div>
 
 
-  <!-- AJUSTES DA SALA -->
-  <div id="roomModal" class="modal" hidden>
+  <!-- ==========================================================
+       AJUSTES DA SALA
+       ========================================================== -->
+
+  <div
+    id="roomModal"
+    class="modal"
+    hidden
+  >
 
     <div
       class="modal-card"
@@ -183,9 +299,15 @@
       aria-labelledby="roomTitle"
     >
 
-      <h2 id="roomTitle">Ajustes da sala</h2>
+      <h2 id="roomTitle">
+        Ajustes da sala
+      </h2>
 
-      <p id="roomSub" class="modal-sub"></p>
+      <p
+        id="roomSub"
+        class="modal-sub"
+      ></p>
+
 
       <label class="field-col">
 
@@ -203,13 +325,20 @@
 
       </label>
 
+
       <div class="modal-actions">
 
-        <button id="roomCancel" class="btn">
+        <button
+          id="roomCancel"
+          class="btn"
+        >
           Cancelar
         </button>
 
-        <button id="roomSave" class="btn go">
+        <button
+          id="roomSave"
+          class="btn go"
+        >
           Salvar
         </button>
 
@@ -220,14 +349,29 @@
   </div>
 
 
-  <!-- BARRA INFERIOR -->
-  <div class="bottombar">
-        <div class="dock">
+  <!-- ==========================================================
+       BARRA INFERIOR
+       ========================================================== -->
 
-      <!-- GRUPO DE COMPARTILHAMENTO -->
+  <div class="bottombar">
+
+
+    <!-- ========================================================
+         DOCK
+         ======================================================== -->
+
+    <div class="dock">
+
+
+      <!-- ======================================================
+           GRUPO DE COMPARTILHAMENTO
+           ====================================================== -->
+
       <div class="group media-controls">
 
+
         <!-- COMPARTILHAR TELA -->
+
         <button
           id="share"
           class="discord-control"
@@ -236,16 +380,36 @@
           aria-label="Compartilhar tela"
           title="Compartilhar tela"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="4" width="18" height="13" rx="2"></rect>
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <rect
+              x="3"
+              y="4"
+              width="18"
+              height="13"
+              rx="2"
+            ></rect>
+
             <path d="M8 20h8"></path>
+
             <path d="M12 17v3"></path>
+
           </svg>
 
-          <span id="shareLabel">Compartilhar tela</span>
+
+          <span id="shareLabel">
+            Compartilhar tela
+          </span>
+
         </button>
 
+
         <!-- CÂMERA -->
+
         <button
           id="cameraButton"
           class="discord-control"
@@ -254,19 +418,42 @@
           aria-label="Câmera"
           title="Câmera"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="6" width="13" height="12" rx="2"></rect>
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <rect
+              x="3"
+              y="6"
+              width="13"
+              height="12"
+              rx="2"
+            ></rect>
+
             <path d="m16 10 5-3v10l-5-3z"></path>
+
           </svg>
 
-          <span>Câmera</span>
+
+          <span>
+            Câmera
+          </span>
+
         </button>
 
       </div>
 
 
-      <!-- CONTROLES -->
+      <!-- ======================================================
+           CONTROLES
+           ====================================================== -->
+
       <div class="group">
+
+
+        <!-- DETALHES DA TRANSMISSÃO -->
 
         <button
           id="settings"
@@ -274,13 +461,32 @@
           data-tip="Detalhes da transmissão"
           aria-label="Detalhes da transmissão"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9.5"></circle>
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <circle
+              cx="12"
+              cy="12"
+              r="9.5"
+            ></circle>
+
             <path d="M12 16.5v-5M12 7.8h.01"></path>
+
           </svg>
+
         </button>
 
-        <div id="volumeBox" class="volume" hidden>
+
+        <!-- VOLUME -->
+
+        <div
+          id="volumeBox"
+          class="volume"
+          hidden
+        >
 
           <button
             id="mute"
@@ -288,19 +494,45 @@
             title="Silenciar"
             aria-label="Silenciar"
           >
-            <svg id="muteOn" viewBox="0 0 24 24" aria-hidden="true">
+
+            <svg
+              id="muteOn"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+
               <path d="M11 5 6 9H2v6h4l5 4V5z"></path>
+
               <path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"></path>
+
             </svg>
 
-            <svg id="muteOff" viewBox="0 0 24 24" aria-hidden="true" hidden>
+
+            <svg
+              id="muteOff"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              hidden
+            >
+
               <path d="M11 5 6 9H2v6h4l5 4V5z"></path>
+
               <path d="M22 9l-6 6M16 9l6 6"></path>
+
             </svg>
+
           </button>
 
+
           <div class="volume-pop">
-            <span id="volumeVal" class="volume-val">100%</span>
+
+            <span
+              id="volumeVal"
+              class="volume-val"
+            >
+              100%
+            </span>
+
 
             <input
               id="volume"
@@ -311,9 +543,13 @@
               value="100"
               aria-label="Volume"
             />
+
           </div>
 
         </div>
+
+
+        <!-- TELA CHEIA -->
 
         <button
           id="fullscreen"
@@ -322,12 +558,21 @@
           aria-label="Tela cheia"
           hidden
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
             <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path>
+
           </svg>
+
         </button>
 
+
         <!-- PERFIL -->
+
         <button
           id="profile"
           class="btn profile-btn"
@@ -339,8 +584,12 @@
       </div>
 
 
-      <!-- CONTROLES DA SALA -->
+      <!-- ======================================================
+           CONTROLES DA SALA
+           ====================================================== -->
+
       <div class="group">
+
 
         <button
           id="roomSettings"
@@ -349,11 +598,26 @@
           aria-label="Senha da sala"
           hidden
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="4" y="11" width="16" height="10" rx="2"></rect>
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <rect
+              x="4"
+              y="11"
+              width="16"
+              height="10"
+              rx="2"
+            ></rect>
+
             <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+
           </svg>
+
         </button>
+
 
         <button
           id="leaveRoom"
@@ -362,484 +626,570 @@
           aria-label="Sair da sala"
           hidden
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+
             <path d="M16 17l5-5-5-5M21 12H9"></path>
+
           </svg>
+
         </button>
 
       </div>
 
     </div>
 
-    <div id="panel" class="panel" hidden>
+
+    <!-- ========================================================
+         PAINEL DE INFORMAÇÕES
+         ======================================================== -->
+
+    <div
+      id="panel"
+      class="panel"
+      hidden
+    >
 
       <div class="panel-row">
-        <span>Transmitindo</span>
-        <strong id="pWho">—</strong>
+
+        <span>
+          Transmitindo
+        </span>
+
+        <strong id="pWho">
+          —
+        </strong>
+
       </div>
+
 
       <div class="panel-row">
-        <span>Latência</span>
-        <strong id="pLag">—</strong>
+
+        <span>
+          Latência
+        </span>
+
+        <strong id="pLag">
+          —
+        </strong>
+
       </div>
+
 
       <div class="panel-row">
-        <span>Quadros</span>
-        <strong id="pFps">—</strong>
+
+        <span>
+          Quadros
+        </span>
+
+        <strong id="pFps">
+          —
+        </strong>
+
       </div>
+
 
       <div class="panel-row">
-        <span>Resolução</span>
-        <strong id="pRes">—</strong>
+
+        <span>
+          Resolução
+        </span>
+
+        <strong id="pRes">
+          —
+        </strong>
+
       </div>
+
 
       <div class="panel-row">
-        <span>Som</span>
-        <strong id="pSom">—</strong>
+
+        <span>
+          Som
+        </span>
+
+        <strong id="pSom">
+          —
+        </strong>
+
       </div>
 
-      <button id="probe" class="panel-btn">
+
+      <button
+        id="probe"
+        class="panel-btn"
+      >
         Testar captura no iframe
       </button>
 
     </div>
 
-
-    <!-- DOCK -->
-<div class="group media-controls">
-
-  <!-- GRUPO DE COMPARTILHAMENTO -->
-<div class="group media-controls">
-
-  <!-- COMPARTILHAR TELA -->
-  <button
-    id="share"
-    class="discord-control"
-    data-tip="Compartilhar tela"
-    aria-label="Compartilhar tela"
-    title="Compartilhar tela"
-  >
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect
-        x="3"
-        y="4"
-        width="18"
-        height="13"
-        rx="2"
-      />
-      <path d="M8 20h8" />
-      <path d="M12 17v3" />
-    </svg>
-
-    <span id="shareLabel">Compartilhar tela</span>
-  </button>
-
-
-  <!-- CÂMERA -->
-  <button
-    id="cameraButton"
-    class="discord-control"
-    data-tip="Câmera"
-    aria-label="Câmera"
-    title="Câmera"
-  >
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect
-        x="3"
-        y="6"
-        width="13"
-        height="12"
-        rx="2"
-      />
-      <path d="m16 10 5-3v10l-5-3z" />
-    </svg>
-
-    <span>Câmera</span>
-  </button>
-
-</div>
-
-<!-- ==========================================================
-     MENU DE COMPARTILHAR TELA
-     ========================================================== -->
-
-<div
-  id="modal"
-  class="modal"
-  hidden
->
-
-  <div
-    class="simple-menu"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modalTitle"
-  >
-
-    <div class="simple-menu-header">
-
-      <h2 id="modalTitle">
-        Compartilhar tela
-      </h2>
-
-      <button
-        id="modalCancel"
-        class="simple-close"
-        aria-label="Fechar"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <button
-      id="modalGo"
-      class="simple-option"
-    >
-
-      <span class="simple-icon">
-
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <rect
-            x="3"
-            y="4"
-            width="18"
-            height="13"
-            rx="2"
-          />
-          <path d="M8 20h8" />
-          <path d="M12 17v3" />
-        </svg>
-
-      </span>
-
-      <span class="simple-text">
-        Compartilhar tela
-      </span>
-
-      <span class="simple-arrow">
-        →
-      </span>
-
-    </button>
-
-
-    <!-- ELEMENTOS NECESSÁRIOS PELO main.js -->
-    <div class="legacy-capture-options">
-
-      <p id="modalSub">
-        Escolha a tela e comece a transmitir.
-      </p>
-
-
-      <label class="field">
-
-        <span>
-          Qualidade
-        </span>
-
-        <select id="mQuality">
-
-          <option value="1000000">
-            Leve — 1 Mbps
-          </option>
-
-          <option
-            value="2500000"
-            selected
-          >
-            Boa — 2,5 Mbps
-          </option>
-
-          <option value="5000000">
-            Alta — 5 Mbps
-          </option>
-
-          <option value="8000000">
-            Máxima — 8 Mbps
-          </option>
-
-        </select>
-
-      </label>
-
-
-      <label class="field">
-
-        <span>
-          Taxa de quadros
-        </span>
-
-        <select id="mFps">
-
-          <option value="15">
-            15 fps
-          </option>
-
-          <option
-            value="30"
-            selected
-          >
-            30 fps
-          </option>
-
-          <option value="60">
-            60 fps
-          </option>
-
-        </select>
-
-      </label>
-
-
-      <label class="field-check">
-
-        <input
-          id="mAudio"
-          type="checkbox"
-        />
-
-        <span>
-          Compartilhar o som
-        </span>
-
-      </label>
-
-
-      <button
-        id="modalSwap"
-        hidden
-      >
-        Trocar tela
-      </button>
-
-
-      <button
-        id="modalSom"
-        hidden
-      >
-        Som
-      </button>
-
-
-      <p id="modalNote"></p>
-
-    </div>
-
   </div>
 
-</div>
 
-
-<!-- ==========================================================
-     MENU DE CÂMERA
-     ========================================================== -->
-
-<div
-  id="cameraModal"
-  class="modal"
-  hidden
->
+  <!-- ==========================================================
+       MENU DE COMPARTILHAR TELA
+       ========================================================== -->
 
   <div
-    class="simple-menu"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="cameraTitle"
+    id="modal"
+    class="modal"
+    hidden
   >
 
-    <div class="simple-menu-header">
-
-      <h2 id="cameraTitle">
-        Câmera
-      </h2>
-
-      <button
-        id="cameraCancel"
-        class="simple-close"
-        aria-label="Fechar"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <button
-      id="cameraOpen"
-      class="simple-option"
+    <div
+      class="simple-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
     >
 
-      <span class="simple-icon">
 
-        <svg viewBox="0 0 24 24" aria-hidden="true">
+      <div class="simple-menu-header">
 
-          <rect
-            x="3"
-            y="6"
-            width="13"
-            height="12"
-            rx="2"
+        <h2 id="modalTitle">
+          Compartilhar tela
+        </h2>
+
+
+        <button
+          id="modalCancel"
+          class="simple-close"
+          aria-label="Fechar"
+          type="button"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <button
+        id="modalGo"
+        class="simple-option"
+        type="button"
+      >
+
+        <span class="simple-icon">
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <rect
+              x="3"
+              y="4"
+              width="18"
+              height="13"
+              rx="2"
+            ></rect>
+
+            <path d="M8 20h8"></path>
+
+            <path d="M12 17v3"></path>
+
+          </svg>
+
+        </span>
+
+
+        <span class="simple-text">
+          Compartilhar tela
+        </span>
+
+
+        <span class="simple-arrow">
+          →
+        </span>
+
+      </button>
+
+
+      <!-- ELEMENTOS QUE O main.js UTILIZA -->
+
+      <div class="legacy-capture-options">
+
+
+        <p id="modalSub">
+          Escolha a tela e comece a transmitir.
+        </p>
+
+
+        <label class="field">
+
+          <span>
+            Qualidade
+          </span>
+
+
+          <select id="mQuality">
+
+            <option value="1000000">
+              Leve — 1 Mbps
+            </option>
+
+            <option
+              value="2500000"
+              selected
+            >
+              Boa — 2,5 Mbps
+            </option>
+
+            <option value="5000000">
+              Alta — 5 Mbps
+            </option>
+
+            <option value="8000000">
+              Máxima — 8 Mbps
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <label class="field">
+
+          <span>
+            Taxa de quadros
+          </span>
+
+
+          <select id="mFps">
+
+            <option value="15">
+              15 fps
+            </option>
+
+            <option
+              value="30"
+              selected
+            >
+              30 fps
+            </option>
+
+            <option value="60">
+              60 fps
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <label class="field-check">
+
+          <input
+            id="mAudio"
+            type="checkbox"
           />
 
-          <path d="m16 10 5-3v10l-5-3z" />
 
-        </svg>
+          <span>
+            Compartilhar o som
+          </span>
 
-      </span>
-
-      <span class="simple-text">
-        Abrir câmera
-      </span>
-
-      <span class="simple-arrow">
-        →
-      </span>
-
-    </button>
-
-  </div>
-
-</div>
+        </label>
 
 
-<!-- PERFIL -->
-
-<div
-  id="profileModal"
-  class="modal"
-  hidden
->
-
-  <div
-    class="modal-card"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="profileTitle"
-  >
-
-    <h2 id="profileTitle">
-      Seu perfil
-    </h2>
+        <button
+          id="modalSwap"
+          hidden
+          type="button"
+        >
+          Trocar tela
+        </button>
 
 
-    <div class="profile-head">
+        <button
+          id="modalSom"
+          hidden
+          type="button"
+        >
+          Som
+        </button>
 
-      <div id="profileAvatar"></div>
 
-      <div class="profile-meta">
-
-        <strong id="profileName"></strong>
-
-        <span
-          id="profileId"
-          class="muted"
-        ></span>
+        <p id="modalNote"></p>
 
       </div>
 
     </div>
 
-
-    <label class="field-col">
-
-      <span>
-        Nome exibido
-      </span>
-
-      <input
-        id="profileInput"
-        type="text"
-        maxlength="32"
-        autocomplete="off"
-      />
-
-    </label>
+  </div>
 
 
-    <div class="modal-actions">
+  <!-- ==========================================================
+       MENU DA CÂMERA
+       ========================================================== -->
+
+  <div
+    id="cameraModal"
+    class="modal"
+    hidden
+  >
+
+    <div
+      class="simple-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cameraTitle"
+    >
+
+
+      <div class="simple-menu-header">
+
+        <h2 id="cameraTitle">
+          Câmera
+        </h2>
+
+
+        <button
+          id="cameraCancel"
+          class="simple-close"
+          aria-label="Fechar"
+          type="button"
+        >
+          ×
+        </button>
+
+      </div>
+
 
       <button
-        id="profileCancel"
-        class="btn"
+        id="cameraOpen"
+        class="simple-option"
+        type="button"
       >
-        Cancelar
-      </button>
 
-      <button
-        id="profileSave"
-        class="btn go"
-      >
-        Salvar
+        <span class="simple-icon">
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <rect
+              x="3"
+              y="6"
+              width="13"
+              height="12"
+              rx="2"
+            ></rect>
+
+            <path d="m16 10 5-3v10l-5-3z"></path>
+
+          </svg>
+
+        </span>
+
+
+        <span class="simple-text">
+          Abrir câmera
+        </span>
+
+
+        <span class="simple-arrow">
+          →
+        </span>
+
       </button>
 
     </div>
 
   </div>
 
+
+  <!-- ==========================================================
+       PERFIL
+       ========================================================== -->
+
+  <div
+    id="profileModal"
+    class="modal"
+    hidden
+  >
+
+    <div
+      class="modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="profileTitle"
+    >
+
+      <h2 id="profileTitle">
+        Seu perfil
+      </h2>
+
+
+      <div class="profile-head">
+
+        <div id="profileAvatar"></div>
+
+
+        <div class="profile-meta">
+
+          <strong id="profileName"></strong>
+
+          <span
+            id="profileId"
+            class="muted"
+          ></span>
+
+        </div>
+
+      </div>
+
+
+      <label class="field-col">
+
+        <span>
+          Nome exibido
+        </span>
+
+
+        <input
+          id="profileInput"
+          type="text"
+          maxlength="32"
+          autocomplete="off"
+        />
+
+      </label>
+
+
+      <div class="modal-actions">
+
+        <button
+          id="profileCancel"
+          class="btn"
+          type="button"
+        >
+          Cancelar
+        </button>
+
+
+        <button
+          id="profileSave"
+          class="btn go"
+          type="button"
+        >
+          Salvar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================================================
+       TOAST
+       ========================================================== -->
+
+  <div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+    hidden
+  ></div>
+
+
 </div>
 
 
-<div
-  id="toast"
-  class="toast"
-  role="status"
-  aria-live="polite"
-  hidden
-></div>
+<!-- ============================================================
+     MAIN.JS
+     ============================================================ -->
+
+<script
+  type="module"
+  src="/src/main.js"
+></script>
 
 
-<script type="module" src="/src/main.js"></script>
-
-
-<!-- CÂMERA -->
+<!-- ============================================================
+     CONTROLE DA CÂMERA
+     ============================================================ -->
 
 <script>
-  const cameraButton = document.getElementById('cameraButton');
-  const cameraModal = document.getElementById('cameraModal');
-  const cameraCancel = document.getElementById('cameraCancel');
-  const cameraOpen = document.getElementById('cameraOpen');
+
+  const cameraButton =
+    document.getElementById('cameraButton');
+
+  const cameraModal =
+    document.getElementById('cameraModal');
+
+  const cameraCancel =
+    document.getElementById('cameraCancel');
+
+  const cameraOpen =
+    document.getElementById('cameraOpen');
+
 
   if (cameraButton && cameraModal) {
 
-    cameraButton.addEventListener('click', () => {
-      cameraModal.hidden = false;
-    });
+    cameraButton.addEventListener(
+      'click',
+      () => {
+        cameraModal.hidden = false;
+      }
+    );
 
   }
+
 
   if (cameraCancel && cameraModal) {
 
-    cameraCancel.addEventListener('click', () => {
-      cameraModal.hidden = true;
-    });
+    cameraCancel.addEventListener(
+      'click',
+      () => {
+        cameraModal.hidden = true;
+      }
+    );
 
   }
+
 
   if (cameraModal) {
 
-    cameraModal.addEventListener('click', (event) => {
+    cameraModal.addEventListener(
+      'click',
+      (event) => {
 
-      if (event.target === cameraModal) {
-        cameraModal.hidden = true;
+        if (event.target === cameraModal) {
+          cameraModal.hidden = true;
+        }
+
       }
-
-    });
+    );
 
   }
+
 
   if (cameraOpen) {
 
-    cameraOpen.addEventListener('click', () => {
+    cameraOpen.addEventListener(
+      'click',
+      () => {
 
-      window.location.href = '/camera/';
+        window.location.href = '/camera/';
 
-    });
+      }
+    );
 
   }
+
 </script>
+
 
 </body>
 </html>
