@@ -1515,6 +1515,38 @@ function stopMyBroadcast() {
   }
 }
 
+const setupMediaButtons = () => {
+  const shareButton = document.getElementById('share');
+  const cameraButton = document.getElementById('cameraButton');
+  const liveSettingsButton = document.getElementById('liveSettings');
+
+  if (shareButton) {
+    shareButton.addEventListener('click', async () => {
+      if (!session) return;
+      openModal('start');
+    });
+  }
+
+  if (cameraButton) {
+    cameraButton.addEventListener('click', async () => {
+      if (!session) return;
+      await toggleCamera();
+    });
+  }
+
+  if (liveSettingsButton) {
+    liveSettingsButton.addEventListener('click', () => {
+      openModal('live');
+    });
+  }
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupMediaButtons, { once: true });
+} else {
+  setupMediaButtons();
+}
+
 /**
  * O mesmo modal serve para começar e para ajustar no ar. Em 'live' os campos
  * já vêm com os valores atuais e o botão aplica em vez de iniciar.
