@@ -1499,23 +1499,7 @@ function iAmBroadcasting() {
   return participants.some((p) => p.broadcasting && p.id === session?.user?.id);
 }
 
-/**
- * Encerra a minha transmissão, tenha ela nascido aqui ou na aba externa.
- *
- * Funil único de propósito: parar pelo botão, sair da sala e a sala fechar
- * precisam encerrar do mesmo jeito. Deixar a captura viva depois de sair é
- * vazamento de tela, não detalhe de interface — e a aba externa tem conexão
- * própria, então só o servidor consegue mandá-la parar.
- */
-function stopMyBroadcast() {
-  myBroadcast?.stop();
-  myBroadcast = null;
-  if (participants.some((p) => p.broadcasting && p.id === session?.user?.id)) {
-    ws?.send(JSON.stringify({ type: 'stop-broadcast' }));
-  }
-}
-
-const setupMediaButtons = () => {
+function setupMediaButtons() {
   const shareButton = document.getElementById('share');
   const cameraButton = document.getElementById('cameraButton');
   const liveSettingsButton = document.getElementById('liveSettings');
@@ -1539,14 +1523,9 @@ const setupMediaButtons = () => {
       openModal('live');
     });
   }
-};
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', setupMediaButtons, { once: true });
-} else {
-  setupMediaButtons();
 }
 
+window.addEventListener('load', setupMediaButtons);
 /**
  * O mesmo modal serve para começar e para ajustar no ar. Em 'live' os campos
  * já vêm com os valores atuais e o botão aplica em vez de iniciar.
