@@ -1590,15 +1590,9 @@ if (audioInput) {
     );
   }
 }
-
 // Se o navegador não encontrou o áudio, adiciona no começo do conteúdo do modal.
-const liveSettingsButton = document.getElementById('liveSettings');
 
-if (liveSettingsButton) {
-  liveSettingsButton.addEventListener('click', () => {
-    openModal('live');
-  });
-}
+
 /** Espelha o volume atual no botão e no cursor, sem tocar no áudio. */
 function renderVolume() {
   const pct = Math.round(volume * 100);
