@@ -701,7 +701,6 @@ const shareButton = $('share');
 
 if (shareButton) {
   shareButton.hidden = false;
-}
 
   const somPendente = Boolean(myBroadcast?.somBloqueado?.());
 
