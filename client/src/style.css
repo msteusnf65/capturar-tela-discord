@@ -606,10 +606,30 @@ button {
 .bottombar {
   flex: 0 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 0 16px 16px;
+}
+
+/* Câmera + Compartilhar */
+.bottombar .dock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Estatísticas da transmissão */
+#settings {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: auto;
+  bottom: auto;
+  margin: 0;
+  z-index: 9999;
 }
 
 /* Sem nada visível dentro, a barra vira uma faixa vazia — é o que sobra no
