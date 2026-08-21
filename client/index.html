@@ -1017,3 +1017,36 @@
 
 </body>
 </html>
+
+/* ==========================================================
+   CONTROLES DA LIVE — POSIÇÃO FINAL
+   ========================================================== */
+
+/* Barra inferior */
+.bottombar {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* Grupo com Câmera + Compartilhar */
+.bottombar .dock {
+  position: static !important;
+  transform: none !important;
+
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  gap: 12px !important;
+}
+
+/* Estatísticas / Detalhes da transmissão */
+#settings {
+  position: fixed !important;
+  top: 20px !important;
+  left: 20px !important;
+
+  z-index: 9999 !important;
+}
